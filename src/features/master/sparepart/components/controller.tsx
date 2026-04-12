@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { type Table } from "@tanstack/react-table";
-import { Trash2, CircleArrowUp, ArrowUpDown, Download } from 'lucide-react'
+import { Trash2, CircleArrowUp, Download } from 'lucide-react'
 import { toast } from "sonner"
 import { sleep } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -42,18 +42,18 @@ export function DataTableBulkActions<TData>({
     table.resetRowSelection()
   }
 
-  const handleBulkTipeChange = (tipe: string) => {
-    const selectedTasks = selectedRows.map((row) => row.original as Sparepart)
-    toast.promise(sleep(2000), {
-      loading: 'Updating priority...',
-      success: () => {
-        table.resetRowSelection()
-        return `Tipe updated to "${tipe}" for ${selectedTasks.length} task${selectedTasks.length > 1 ? 's' : ''}.`
-      },
-      error: 'Error',
-    })
-    table.resetRowSelection()
-  }
+  // const handleBulkTipeChange = (tipe: string) => {
+  //   const selectedTasks = selectedRows.map((row) => row.original as Sparepart)
+  //   toast.promise(sleep(2000), {
+  //     loading: 'Updating priority...',
+  //     success: () => {
+  //       table.resetRowSelection()
+  //       return `Tipe updated to "${tipe}" for ${selectedTasks.length} task${selectedTasks.length > 1 ? 's' : ''}.`
+  //     },
+  //     error: 'Error',
+  //   })
+  //   table.resetRowSelection()
+  // }
 
   const handleBulkExport = () => {
     const selectedTasks = selectedRows.map((row) => row.original as Sparepart)

@@ -1,7 +1,6 @@
 import { type ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from '@/components/data-table'
-import { tipes, statuses } from '../data/data'
 import { type Task } from '../data/schema'
 import { EditRow } from './tugas-editbaris'
 

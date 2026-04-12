@@ -16,20 +16,19 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+// import { Input } from '@/components/ui/input'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { DatePicker } from '@/components/date-picker'
-import { getRouteApi } from '@tanstack/react-router'
+
+// import { getRouteApi } from '@tanstack/react-router'
 
 const languages = [
   { label: 'Nigel', value: 'en' },
@@ -50,7 +49,7 @@ const accountFormSchema = z.object({
   language: z.string('Please select a language.'),
 })
 
-const routeApi = getRouteApi('/_authenticated/surat-tugas/actions/general/$id')
+// const routeApi = getRouteApi('/_authenticated/surat-tugas/actions/general/$id')
 
 
 type AccountFormValues = z.infer<typeof accountFormSchema>
@@ -66,7 +65,7 @@ export function AccountForm() {
     defaultValues,
   })
 
-  const { id } = routeApi.useParams()
+  // const { id } = routeApi.useParams()
 
 
   function onSubmit(data: AccountFormValues) {
@@ -201,8 +200,8 @@ export function AccountForm() {
           )}
         />
         
-      {/*No. Komplain */}
-      <FormField
+  
+      {/* <FormField
         control={form.control}
         name='name'
         render={({ field }) => (
@@ -214,10 +213,9 @@ export function AccountForm() {
             <FormMessage />
           </FormItem>
         )}
-      />
+      /> */}
 
-      {/* Surat Tugas */}
-      <FormField
+      {/* <FormField
         control={form.control}
         name='name'
         render={({ field }) => (
@@ -229,10 +227,10 @@ export function AccountForm() {
             <FormMessage />
           </FormItem>
         )}
-      />
+      /> */}
 
-      {/* PIC */}
-      <FormField
+
+      {/* <FormField
           control={form.control}
           name='language'
           render={({ field }) => (
@@ -291,7 +289,7 @@ export function AccountForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
       {/* <FormField
         control={form.control}

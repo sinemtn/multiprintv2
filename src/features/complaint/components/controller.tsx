@@ -43,19 +43,6 @@ export function DataTableBulkActions<TData>({
     table.resetRowSelection()
   }
 
-  const handleBulkTipeChange = (tipe: string) => {
-    const selectedTasks = selectedRows.map((row) => row.original as Complaint)
-    toast.promise(sleep(2000), {
-      loading: 'Updating priority...',
-      success: () => {
-        table.resetRowSelection()
-        return `Tipe updated to "${tipe}" for ${selectedTasks.length} task${selectedTasks.length > 1 ? 's' : ''}.`
-      },
-      error: 'Error',
-    })
-    table.resetRowSelection()
-  }
-
   const handleBulkExport = () => {
     const selectedTasks = selectedRows.map((row) => row.original as Complaint)
     toast.promise(sleep(2000), {

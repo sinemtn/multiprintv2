@@ -44,7 +44,6 @@ import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_a
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedSuratTugasActionsRouteRouteImport } from './routes/_authenticated/surat-tugas/actions/route'
-import { Route as AuthenticatedStockTonerIndexRouteImport } from './routes/_authenticated/stock/toner/index'
 import { Route as AuthenticatedStockPrinterIndexRouteImport } from './routes/_authenticated/stock/printer/index'
 import { Route as AuthenticatedSuratTugasActionsItemsRouteImport } from './routes/_authenticated/surat-tugas/actions/items'
 import { Route as AuthenticatedPrinterActionsIndexIdRouteImport } from './routes/_authenticated/printer/actions/index.$id'
@@ -236,12 +235,6 @@ const AuthenticatedSuratTugasActionsRouteRoute =
     path: '/surat-tugas/actions',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedStockTonerIndexRoute =
-  AuthenticatedStockTonerIndexRouteImport.update({
-    id: '/stock/toner/',
-    path: '/stock/toner/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedStockPrinterIndexRoute =
   AuthenticatedStockPrinterIndexRouteImport.update({
     id: '/stock/printer/',
@@ -302,7 +295,6 @@ export interface FileRoutesByFullPath {
   '/users/': typeof AuthenticatedUsersIndexRoute
   '/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
   '/stock/printer/': typeof AuthenticatedStockPrinterIndexRoute
-  '/stock/toner/': typeof AuthenticatedStockTonerIndexRoute
   '/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
   '/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
 }
@@ -340,7 +332,6 @@ export interface FileRoutesByTo {
   '/users': typeof AuthenticatedUsersIndexRoute
   '/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
   '/stock/printer': typeof AuthenticatedStockPrinterIndexRoute
-  '/stock/toner': typeof AuthenticatedStockTonerIndexRoute
   '/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
   '/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
 }
@@ -383,7 +374,6 @@ export interface FileRoutesById {
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
   '/_authenticated/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
   '/_authenticated/stock/printer/': typeof AuthenticatedStockPrinterIndexRoute
-  '/_authenticated/stock/toner/': typeof AuthenticatedStockTonerIndexRoute
   '/_authenticated/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
   '/_authenticated/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
 }
@@ -424,7 +414,6 @@ export interface FileRouteTypes {
     | '/users/'
     | '/surat-tugas/actions/items'
     | '/stock/printer/'
-    | '/stock/toner/'
     | '/surat-tugas/actions/general/$id'
     | '/printer/actions/index/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -462,7 +451,6 @@ export interface FileRouteTypes {
     | '/users'
     | '/surat-tugas/actions/items'
     | '/stock/printer'
-    | '/stock/toner'
     | '/surat-tugas/actions/general/$id'
     | '/printer/actions/index/$id'
   id:
@@ -504,7 +492,6 @@ export interface FileRouteTypes {
     | '/_authenticated/users/'
     | '/_authenticated/surat-tugas/actions/items'
     | '/_authenticated/stock/printer/'
-    | '/_authenticated/stock/toner/'
     | '/_authenticated/surat-tugas/actions/general/$id'
     | '/_authenticated/printer/actions/index/$id'
   fileRoutesById: FileRoutesById
@@ -771,13 +758,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSuratTugasActionsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/stock/toner/': {
-      id: '/_authenticated/stock/toner/'
-      path: '/stock/toner'
-      fullPath: '/stock/toner/'
-      preLoaderRoute: typeof AuthenticatedStockTonerIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/stock/printer/': {
       id: '/_authenticated/stock/printer/'
       path: '/stock/printer'
@@ -865,7 +845,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedTonersIndexRoute: typeof AuthenticatedTonersIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
   AuthenticatedStockPrinterIndexRoute: typeof AuthenticatedStockPrinterIndexRoute
-  AuthenticatedStockTonerIndexRoute: typeof AuthenticatedStockTonerIndexRoute
   AuthenticatedPrinterActionsIndexIdRoute: typeof AuthenticatedPrinterActionsIndexIdRoute
 }
 
@@ -885,7 +864,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedTonersIndexRoute: AuthenticatedTonersIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
   AuthenticatedStockPrinterIndexRoute: AuthenticatedStockPrinterIndexRoute,
-  AuthenticatedStockTonerIndexRoute: AuthenticatedStockTonerIndexRoute,
   AuthenticatedPrinterActionsIndexIdRoute:
     AuthenticatedPrinterActionsIndexIdRoute,
 }

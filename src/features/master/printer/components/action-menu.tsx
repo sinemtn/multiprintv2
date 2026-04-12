@@ -1,13 +1,12 @@
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'
-import { Eye, Pencil, Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Link } from '@tanstack/react-router'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
@@ -27,7 +26,7 @@ export function EditRow<TData>({
   const task = printerSchema.parse(row.original)
 
   const { setOpen, setCurrentRow } = useTasks()
-  const { setOpenMobile } = useSidebar()
+  const {  } = useSidebar()
 
     return (
       <DropdownMenu modal={false}>

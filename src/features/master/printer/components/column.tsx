@@ -1,10 +1,10 @@
 import { type ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from '@/components/data-table'
-import { tipes, statuses } from '../data/data'
+
 import { type Printer } from '../data/schema'
 import { EditRow } from "./action-menu"
-import { Link } from "@tanstack/react-router"
+
 
 
 export const tasksColumns: ColumnDef<Printer>[] = [

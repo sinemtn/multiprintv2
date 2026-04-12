@@ -133,9 +133,7 @@ export function DataTableBulkActions<TData>({
                 defaultValue={tipe.value}
                 onClick={() => handleBulkTipeChange(tipe.value)}
               >
-                {tipe.icon && (
-                  <tipe.icon className='size-4 text-muted-foreground' />
-                )}
+           
                 {tipe.label}
               </DropdownMenuItem>
             ))}
