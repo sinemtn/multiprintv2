@@ -1,43 +1,23 @@
-import { Ban, CalendarPlus, CheckCircle2, Loader } from "lucide-react"
-
-export const tipes = [
+export const activates = [
     {
-        value: 'Maintenance',
-        label: 'Maintenance'as const,
-        icon: CalendarPlus,
-    },
-     {
-        value: 'Servie',
-        label: 'Service' as const,
-        icon: CalendarPlus,
+        value: 'True',
+        label: 'True' as const,
     },
     {
-        value: 'Non-Repair',
-        label: 'Non-Repair'as const,
-        icon: CalendarPlus,
+        value: 'False',
+        label: 'False' as const,
     },
 
 ]
-    export const statuses = [
-        {
-    label: 'Baru',
-    value: 'Baru' as const,
-    icon: CalendarPlus,
-    },
-    {
-        label: 'Proses',
-        value: 'Proses' as const,
-        icon: Loader,
-    },
-    {
-        label: 'Selesai',
-        value: 'Selesai' as const,
-        icon: CheckCircle2
-    },
-    {
-        label: 'Cancel',
-        value: 'Cancel' as const,
-        icon: Ban
-    },
 
+export const categories = [
+    {
+        value: 'Color',
+        label: 'Color' as const,
+
+    },
+    {
+        value: 'Black',
+        label: 'Black' as const,
+    }
 ]

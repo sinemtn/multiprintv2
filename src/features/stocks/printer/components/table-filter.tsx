@@ -79,10 +79,11 @@ export function TasksTable({ data }: DataTableProps) {
             const name = String(row.getValue('name')).toLowerCase()
             const serialno = String(row.getValue('serialno')).toLowerCase()
             const location = String(row.getValue('location')).toLowerCase()
-            const status = String(row.getValue('status')).toLowerCase()
+            const note = String(row.getValue('note')).toLowerCase()
             const searchValue = String(filterValue).toLowerCase()
-            return id.includes(searchValue) || name.includes(searchValue) || serialno.includes(searchValue) || location.includes(searchValue) || status.includes(searchValue)
+            return id.includes(searchValue) || location.includes(searchValue) || name.includes(searchValue) || serialno.includes(searchValue) || note.includes(searchValue)
         },
+
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
@@ -108,7 +109,7 @@ export function TasksTable({ data }: DataTableProps) {
         >
             <DataTableToolbar
                 table={table}
-                searchPlaceholder='Cari Stock Printer...'
+                searchPlaceholder='Cari Stock Toner...'
                 filters={[
                     {
                         columnId: 'status',

@@ -55,7 +55,7 @@ export function PrinterDialogs() {
                             )
                         }}
                         className='max-w-md'
-                        title={`Hapus Printer ${currentRow.name}`}
+                        title={`Hapus Printer ${currentRow.id}`}
                         desc={
                             <>
                                 Anda yakin untuk menghapus printer ini? {' '}

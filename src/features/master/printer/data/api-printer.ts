@@ -1,79 +1,100 @@
-import { printerSchema, Printer } from "./schema"
+import { schemamasterprinter, MasterPrinter } from "./schema"
 
-const BASE_URL = 'https://103bec10-ae2f-4484-bfc7-16921f4b1b5e.mock.pstmn.io/api/printer'
 
-export const printeApi = {
+const BASE_URL ='https://103bec10-ae2f-4484-bfc7-16921f4b1b5e.mock.pstmn.io/api/printer'
 
-    // 1. Fetch all data
-    getAll: async (): Promise<Printer[]> => {
-        const response = await fetch (BASE_URL)
-        const res = await response.json()
+export const ApiPrinter = {
+    // list
+    list: async():Promise<MasterPrinter[]> => {
+        const response = await fetch(BASE_URL)
+        const result = await response.json()
+        const read = result.data || []
 
-        // Raw Data 
-        const allData = res.data || []
-
-        return allData.map((item: any) => {
-            const mappedData = {
-                id: item.printerID,
-                nama: item.name,
-                manufaktur: item.manufacture,
-                kategori: item.category, 
-                toner: item.toner,
-                supplier: item.supplier,
-                aktif: item.active,
+        return read.map((item:any) => {
+            const payload = {
+            id: item.printerID,
+            name: item.name, 
+            manufacture: item.manufacture,
+            category: item.category,
+            toner: item.toner,
+            supplier: item.supplier,
+            active: item.active
+            
             }
-            return printerSchema.parse(mappedData)
+            return schemamasterprinter.parse(payload)
         })
     },
 
-    // 2. Fetch Data based on it's ID
-    getById: async (id: string): Promise<Printer> => {
-        const response = await fetch(`${BASE_URL}/${encodeURIComponent(id)}`)
-        const res = await response.json()
-        const item = res.data
+    // read by id
+    byid: async(id: string): Promise<MasterPrinter> => {
+        const response = await fetch(`${BASE_URL}/${id}`)
+        const result = await response.json()
+        const readbyid = result.data
 
-        const mappedData = {
-            id: item.printerID,
-            nama: item.name,
-            manufaktur: item.manufacture,
-            kategori: item.category, 
-            toner: item.toner,
-            supplier: item.supplier,
-            aktif: item.active,
-        }
-        return printerSchema.parse(mappedData)
+        const payload = {
+            id: readbyid.printerID,
+            name: readbyid.name, 
+            manufacture: readbyid.manufacture,
+            category: readbyid.category,
+            toner: readbyid.toner,
+            supplier: readbyid.supplier,
+            active: readbyid.active
+        }; 
+        return schemamasterprinter.parse(payload);
     },
 
-    // 3. Update Data
-    update: async (id: string, data: Partial<Printer>) => {
-        const response = await fetch(`${BASE_URL}/${encodeURIComponent(id)}`,
+    // create
+    create: async(data: MasterPrinter): Promise<MasterPrinter> => {
+        const payload = {
+            printerID: data.id,
+            name: data.name,
+            manufacture: data.manufacture,
+            category: data.category,
+            toner: data.toner,
+            supplier: data.supplier,
+            active: data.active
+        };
+
+        const response = await fetch(BASE_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body: JSON.stringify(payload)
+        })
+        const result = await response.json()
+        const item = result.data
+        
+        const map = {
+            id: item.printerID,
+            name: item.name, 
+            manufacture: item.manufacture,
+            category: item.category,
+            toner: item.toner,
+            supplier: item.supplier,
+            active: item.active
+        }
+        return schemamasterprinter.parse(map)
+    }, 
+
+    // put 
+    put: async (id: string, data: Partial<MasterPrinter>) => {
+            const response = await fetch(`${BASE_URL}/${id}`,
             {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             }
         )
-        return response.json()
-    },
+            return response.json()
+        },
 
-    // 4. Delete Data
-    delete: async (id:string) => {
-           const response = await fetch(`${BASE_URL}/${encodeURIComponent(id)}`, 
-           {
-                method: 'DELETE',
-           }
-        )
-        return response.json()
-    },
-
-    // 5. Add Data
-    create: async(newData: Printer): Promise<any> => {
-        const response = await fetch(BASE_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify(newData),
+    // deactive
+    deactive: async (id:string) => {
+        const response = await fetch(`${BASE_URL}/${id}`,{
+            method: 'PATCH'
         })
-        return await response.json()
-    },
+        return response.json()
+    }
 
 }

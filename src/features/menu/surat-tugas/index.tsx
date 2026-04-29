@@ -10,10 +10,10 @@ import { ApiSuratTugas } from './data/api-surattugas'
 import { SuratTugas } from './data/schema'
 
 // Local Components
-import { MainHeaderButton } from './components/main-header-button'
-import { TasksTable } from './components/table-filter'
-import { TasksProvider } from './components/main-page'
 import { PrinterDialogs } from './components/dialog'
+import { MainHeaderButton } from './components/main-header-button'
+import { TasksProvider } from './components/main-page'
+import { TasksTable } from './components/table-filter'
 
 export function IndexSuratTugas() {
     const [SuratTugases, setSuratTugases] = useState<SuratTugas[]>([])

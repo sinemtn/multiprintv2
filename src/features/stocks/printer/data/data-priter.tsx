@@ -1,15 +1,3 @@
-export const activates = [
-    {
-        value: 'Aktif', 
-        label: 'Aktif' as const,
-    }, 
-    {
-        value: 'Nonaktif', 
-        label: 'Nonaktif' as const,
-    }, 
-
-]
-
 export const statuses = [
     {
         value: 'Ready',
@@ -17,8 +5,18 @@ export const statuses = [
         
     },
     {
-        value: 'Non-Ready',
-        label: 'Non-Ready' as const,
+        value: 'Contract',
+        label: 'Contract' as const,
+        
+    },
+    {
+        value: 'Repair',
+        label: 'Repair' as const,
+        
+    },
+    {
+        value: 'Sold',
+        label: 'Sold' as const,
         
     }
 ]

@@ -51,15 +51,14 @@ export function PrinterDialogs() {
                             }, 500)
                             showSubmittedData(
                                 currentRow,
-                                'Surat tugas telah terhapus:'
+                                'Komplain telah terhapus:'
                             )
                         }}
                         className='max-w-md'
                         title={`Hapus Printer ${currentRow.id}`}
                         desc={
                             <>
-                                Anda yakin untuk menghapus printer ini? {' '}
-                                {/* <strong>{currentRow.nama}</strong>. <br /> */}
+                                Anda yakin untuk menghapus komplain ini? {' '}
                             </>
                         }
                         confirmText='Delete'

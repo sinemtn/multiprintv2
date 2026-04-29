@@ -16,7 +16,8 @@ import {
   PackageCheckIcon,
   Printer,
   ToolCase,
-  BottleWineIcon
+  BottleWineIcon,
+  User
   
 } from 'lucide-react'
 
@@ -88,15 +89,15 @@ export const sidebarData: SidebarData = {
             },
             {
               title: 'Toner',
-              url: '/',
+              url: '/stock/toner',
               icon: BottleWineIcon,
             },
 
-            {
-              title: 'Sparepart',
-              url: '/',
-              icon: ToolCase,
-            },
+            // {
+            //   title: 'Sparepart',
+            //   url: '/',
+            //   icon: ToolCase,
+            // },
 
 
           ],
@@ -108,19 +109,23 @@ export const sidebarData: SidebarData = {
           items: [
             {
               title: 'Printer',
-              url: '/printer',
+              url: '/master/printer',
               icon: Printer,
             },
             {
               title: 'Toner',
-              url: '/toners',
+              url: '/master/toner',
               icon: BottleWineIcon,
             },
-
             {
               title: 'Sparepart',
-              url: '/',
+              url: '/master/sparepart',
               icon: ToolCase,
+            },
+            {
+              title: 'User',
+              url: '/master/user',
+              icon: User,
             },
 
 

@@ -4,241 +4,265 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { Button } from '@/components/ui/button'
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
-
+import { SelectDropdown } from '@/components/select-dropdown'
 import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
 } from '@/components/ui/sheet'
-
+import { DatePicker } from '@/components/date-picker'
 import { type StockPrinter } from '../data/schema'
 
 type TaskMutateDrawerProps = {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-    currentRow?: StockPrinter
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  currentRow?: StockPrinter
 }
 
 const formSchema = z.object({
-
-    id: z.string().optional(),
-    name: z.string(),
-    serialno: z.string(),
-    feature: z.string(),
-    buydate: z.string(),
-    location: z.string(),
-    branch: z.string(),
-    status: z.string(),
-    active: z.string(),
-    note: z.string(),
-
+  id: z.string(),
+  name: z.string(),
+  serialno: z.string(),
+  feature: z.string(),
+  buydate: z.date(),
+  location: z.string(),
+  branch: z.string(),
+  status: z.string(),
+  active: z.string(),
+  note: z.string(),
 })
 type TaskForm = z.infer<typeof formSchema>
 
 
-
 export function TasksMutateDrawer({
-    open,
-    onOpenChange,
-    currentRow,
+  open,
+  onOpenChange,
+  currentRow,
 }: TaskMutateDrawerProps) {
-    const isUpdate = !!currentRow
+  const isUpdate = !!currentRow
 
-    const form = useForm<TaskForm>({
-        resolver: zodResolver(formSchema),
-        defaultValues: currentRow ?? {
-            id: '',
-            name: '',
-            serialno: '',
-            feature: '',
-            buydate: '',
-            location: '',
-            branch: '',
-            status: '',
-            active: '',
-            note: '',
-        },
-    })
+  const form = useForm<TaskForm>({
+    resolver: zodResolver(formSchema),
+    defaultValues: currentRow ?? {
+      id: '',
+      name: '',
+      serialno: '',
+      feature: '',
+      buydate: undefined,
+      location: '',
+      branch: '',
+      status: '',
+      active: '',
+      note: '',
+    },
+  })
 
-    const onSubmit = (data: TaskForm) => {
-        // do something with the form data
-        onOpenChange(false)
+  const onSubmit = (data: TaskForm) => {
+    // do something with the form data
+    onOpenChange(false)
+    form.reset()
+    showSubmittedData(data)
+  }
+
+  return (
+    <Sheet
+      open={open}
+      onOpenChange={(v) => {
+        onOpenChange(v)
         form.reset()
-        showSubmittedData(data)
-    }
+      }}
+    >
+      <SheetContent className='flex flex-col'>
+        <SheetHeader className='text-start'>
+          <SheetTitle>{isUpdate ? 'Update' : 'Tambah'} Stock Printer </SheetTitle>
+          <SheetDescription>
+            {isUpdate
+              ? 'Update Data Stock Toner'
+              : 'Buat Baru Stock Toner'}
+          </SheetDescription>
+        </SheetHeader>
 
-    return (
-        <Sheet
-            open={open}
-            onOpenChange={(v) => {
-                onOpenChange(v)
-                form.reset()
-            }}
-        >
-            <SheetContent className='flex flex-col'>
-                <SheetHeader className='text-start'>
-                    <SheetTitle>{isUpdate ? 'Update' : 'Tambah'} Stock Printer </SheetTitle>
-                    <SheetDescription>
-                        {isUpdate
-                            ? 'Update Data Stock Printer'
-                            : 'Buat Baru Stock Printer'}
-                    </SheetDescription>
-                </SheetHeader>
+        <Form {...form}>
+          <form
+            id='tasks-form'
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='flex-1 space-y-6 overflow-y-auto px-4'
+          >
 
-                <Form {...form}>
-                    <form
-                        id='tasks-form'
-                        onSubmit={form.handleSubmit(onSubmit)}
-                        className='flex-1 space-y-6 overflow-y-auto px-4'
-                    >
-
-                        {/* Printer ID */}
-                        <FormField
-                            control={form.control}
-                            name='id'
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Printer ID</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} placeholder='Nama' disabled />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-
-
-
-                        {/* <FormField
+            {/* Printer ID */}
+            <FormField
               control={form.control}
-              name='nama'
+              name='id'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama</FormLabel>
+                  <FormLabel>Printer ID</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder='Nama' disabled/>
+                    <Input {...field} placeholder='ID Printer' disabled />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-         
+
+            {/* Printer Name */}
             <FormField
               control={form.control}
-              name='manufaktur'
+              name='name'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama Customer</FormLabel>
+                  <FormLabel>Nama Printer</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder='Nama Customer' />
+                    <Input {...field} placeholder='Nama Printer' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-     
+
+            {/* Serial Key */}
+            <FormField
+              control={form.control}
+              name='serialno'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>No. Serial</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder='Serial' />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Feature */}
+            <FormField
+              control={form.control}
+              name='feature'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Fitur</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder='Fitur' />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <FormField
-              control={form.control}
-              name='kategori'
-              render={({ field }) => (
-                <FormItem className='relative'>
-                  <FormLabel>Tipe</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className='flex flex-col space-y-1'
-                    >
-                      <FormItem className='flex items-center'>
-                        <FormControl>
-                          <RadioGroupItem value='Maintenance' />
-                        </FormControl>
-                        <FormLabel className='font-normal'>Maintenance</FormLabel>
-                      </FormItem>
-                      <FormItem className='flex items-center'>
-                        <FormControl>
-                          <RadioGroupItem value='Servie' />
-                        </FormControl>
-                        <FormLabel className='font-normal'>Servie</FormLabel>
-                      </FormItem>
-                      <FormItem className='flex items-center'>
-                        <FormControl>
-                          <RadioGroupItem value='Non-Repair' />
-                        </FormControl>
-                        <FormLabel className='font-normal'>Non-Repair</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-       
-       
+          control={form.control}
+          name='buydate'
+          render={({ field }) => (
+            <FormItem className='flex flex-col'>
+              <FormLabel>Tanggal Beli</FormLabel>
+              <DatePicker selected={field.value} onSelect={field.onChange} />
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+            {/* Location */}
             <FormField
               control={form.control}
-              name='toner'
+              name='location'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama PIC</FormLabel>
+                  <FormLabel>Lokasi</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder='Nama PIC' />
+                    <Input {...field} placeholder='Lokasi' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-    
-    
+
+            {/* Branch */}
             <FormField
               control={form.control}
-              name='supplier'
+              name='branch'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Cabang</FormLabel>
+                  <FormControl>
+                    <Input {...field} placeholder='Cabang' />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Status */}
+            <FormField
+              control={form.control}
+              name='status'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Status</FormLabel>
                   <SelectDropdown
                     defaultValue={field.value}
                     onValueChange={field.onChange}
-                    placeholder='Pilih Status Surat Tugas'
+                    placeholder='Status Printer'
                     items={[
-                      { label: 'Baru', value: 'Baru' },
-                      { label: 'Proses', value: 'Proses' },
-                      { label: 'Selesai', value: 'Selesai' },
-                      { label: 'Cancel', value: 'Cancel' },
+                      { label: 'Ready', value: 'Ready' },
+                      { label: 'Contract', value: 'Contract' },
+                      { label: 'Repair', value: 'Repair' },
+                      { label: 'Sold', value: 'Sold' },
                     ]}
                   />
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
+            />
 
-                    </form>
+            {/* Note */}
+            <FormField
+              control={form.control}
+              name='note'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Catatan</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      className='resize-none'
+                      placeholder='Tambahkan catatan (optional)'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
 
-                </Form>
 
-                <SheetFooter className='gap-2'>
-                    <SheetClose asChild>
-                        <Button variant='outline'>Tutup</Button>
-                    </SheetClose>
-                    <Button form='tasks-form' type='submit'>
-                        Simpan
-                    </Button>
-                </SheetFooter>
-            </SheetContent>
-        </Sheet>
-    )
+
+          </form>
+        </Form>
+
+
+
+        <SheetFooter className='gap-2'>
+          <SheetClose asChild>
+            <Button variant='outline'>Tutup</Button>
+          </SheetClose>
+          <Button form='tasks-form' type='submit'>
+            Simpan
+          </Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  )
 }

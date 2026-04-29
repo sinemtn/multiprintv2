@@ -2,10 +2,10 @@ import { z } from 'zod'
 
 export const schemacomplaint = z.object({
     id: z.string(),
-    nokomplain: z.string(),
-    namacustomer: z.string(),
-    tipe: z.string(),
-    namapic: z.string(),
+    mpNo: z.string(),
+    description: z.string(),
+    customer: z.string(),
+    sales: z.string(),
     status: z.string(),
 })
 

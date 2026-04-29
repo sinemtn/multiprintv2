@@ -1,7 +1,7 @@
 import { schemastockprinter, StockPrinter } from "./schema";
 
 
-const BASE_URL ='http://202.155.157.237/api/stock/printer'
+const BASE_URL ='https://103bec10-ae2f-4484-bfc7-16921f4b1b5e.mock.pstmn.io/api/stock/printer'
 
 export const ApiPrinter = {
     // list

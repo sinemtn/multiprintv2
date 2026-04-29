@@ -4,6 +4,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from '@/components/data-table'
 import { type Complaint } from "../data/schema"
 import { EditRow } from "./table-row-edit"
+import { LongText } from '@/components/long-text'
+import { cn } from '@/lib/utils'
 
 
 export const TableColumns: ColumnDef<Complaint>[] = [
@@ -33,73 +35,75 @@ export const TableColumns: ColumnDef<Complaint>[] = [
         enableSorting: false,
         enableHiding: false,
     },
-
-    // ID
+    // No Komplain
     {
         accessorKey: 'id',
         header: ({ column }) => (
-            <DataTableColumnHeader column={column} title='PrinterID' />
+            <DataTableColumnHeader column={column} title='No. Komplain' />
         ),
-        cell: ({ row }) => <div className='w-[80px] '>{row.getValue('id')}</div>,
-        enableSorting: false,
+        cell: ({ row }) => (
+            <LongText className='max-w-36 ps-3'>{row.getValue('id')}</LongText>
+        ),
+        meta: {
+            className: cn(
+                'drop-shadow-[0_1px_2px_rgb(0_0_0_/_0.1)] dark:drop-shadow-[0_1px_2px_rgb(255_255_255_/_0.1)]',
+                'ps-0.5 max-md:sticky start-6 @4xl/content:table-cell @4xl/content:drop-shadow-none'
+            ),
+        },
         enableHiding: false,
     },
-
-    // Nama Printer
+    // MP. No
     {
-        accessorKey: 'serialno',
+        accessorKey: 'mpNo',
         header: ({ column }) => (
-            <DataTableColumnHeader column={column} title='Serial No' />
+            <DataTableColumnHeader column={column} title='MP. No' />
         ),
-        meta: {
-            className: 'ps-1 max-w-0 w-1/3',
-            tdClassName: 'ps-4',
-        },
-
-        cell: ({ row }) => {
-            return (
-                <div className='flex space-x-2'>
-                    <span className='truncate font-medium'>{row.getValue('serialno')}</span>
-                </div>
-            )
-        },
+        cell: ({ row }) => (
+            <div className='w-fit ps-2 text-nowrap'>{row.getValue('mpNo')}</div>
+        ),
+    },
+    //   Description
+    {
+        accessorKey: 'description',
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title='Deskripsi' />
+        ),
+        cell: ({ row }) => (
+            <div className='w-fit ps-2 text-nowrap'>{row.getValue('description')}</div>
+        ),
+    },
+    //   Customer
+    {
+        accessorKey: 'customer',
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title='Customer' />
+        ),
+        cell: ({ row }) => (
+            <div className='w-fit ps-2 text-nowrap'>{row.getValue('customer')}</div>
+        ),
+    },
+    //   Sales
+    {
+        accessorKey: 'sales',
+        header: ({ column }) => (
+            <DataTableColumnHeader column={column} title='Sales' />
+        ),
+        cell: ({ row }) => (
+            <div className='w-fit ps-2 text-nowrap'>{row.getValue('sales')}</div>
+        ),
     },
 
-    // Lokasi
-    {
-        accessorKey: 'location',
-        header: ({ column }) => (
-            <DataTableColumnHeader column={column} title='Lokasi' />
-        ),
-        meta: {
-            tdClassName: 'ps-4'
-        },
-        cell: ({ row }) => {
-            return (
-                <div className='flex space-x-2'>
-                    <span className='truncate font-medium'>{row.getValue('location')}</span>
-                </div>
-            )
-        },
-    },
-
-    // Status
+    //   Status
     {
         accessorKey: 'status',
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title='Status' />
         ),
-        meta: {
-            tdClassName: 'ps-4'
-        },
-        cell: ({ row }) => {
-            return (
-                <div className='flex space-x-2'>
-                    <span className='truncate font-medium'>{row.getValue('status')}</span>
-                </div>
-            )
-        },
+        cell: ({ row }) => (
+            <div className='w-fit ps-2 text-nowrap'>{row.getValue('status')}</div>
+        ),
     },
+
 
     // Action
     {

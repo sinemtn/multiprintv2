@@ -39,26 +39,6 @@ export function IndexStockPrinter() {
     }
 
     return (
-        // <TasksProvider>
-        //     <Header fixed>
-        //         <div className='ms-auto flex items-center space-x-4'>
-        //             <ThemeSwitch />
-        //             <ProfileDropdown />
-        //         </div>
-        //     </Header>
-        //     <Main>
-        //         <div className='flex flex-wrap items-end justify-between gap-2'>
-        //             <div>
-        //                 <h2 className='text-2xl font-bold tracking-tight'>Stock Printer</h2>
-        //                 <p className='text-muted-foreground'>
-        //                     Daftar list stock printer.
-        //                 </p>
-        //             </div>
-        //             <MainHeaderButton />
-        //         </div>
-        //         <TasksTable data={StockPrinters} />
-        //     </Main>
-        // </TasksProvider>
         <TasksProvider>
             <Header fixed>
                 <div className='ms-auto flex items-center space-x-4'>

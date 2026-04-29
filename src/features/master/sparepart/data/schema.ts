@@ -1,10 +1,8 @@
 import { z } from 'zod'
 
-export const sparepartSchema = z.object({
+export const schemamastersparepart = z.object({
     id: z.coerce.string(),
-    nama: z.coerce.string(),
-    status: z.coerce.string(),
-    
+    name: z.coerce.string(),
+    active: z.coerce.string(),
 })
-
-export type Sparepart = z.infer<typeof sparepartSchema>
+export type MasterSparepart = z.infer<typeof schemamastersparepart>

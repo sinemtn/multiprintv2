@@ -1,8 +1,8 @@
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { ConfirmDialog } from '@/components/confirm-dialog'
 import { TasksImportDialog } from './import-csv'
-import { TasksMutateDrawer } from './modal-crud'
-import { useTasks } from './provider'
+import { TasksMutateDrawer } from './table-singleaction'
+import { useTasks } from './main-page'
 
 export function PrinterDialogs() {
     const { open, setOpen, currentRow, setCurrentRow } = useTasks()
@@ -55,10 +55,10 @@ export function PrinterDialogs() {
                             )
                         }}
                         className='max-w-md'
-                        title={`Hapus Printer ${currentRow.nama}`}
+                        title={`Hapus Printer ${currentRow.id}`}
                         desc={
                             <>
-                                Anda yakin untuk menghapus printer ini? {' '}
+                                Anda yakin untuk menghapus toner ini? {' '}
                                 {/* <strong>{currentRow.nama}</strong>. <br /> */}
                             </>
                         }

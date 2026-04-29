@@ -1,7 +1,7 @@
 import { schemacomplaint, Complaint } from "./schema";
 
 
-const BASE_URL = 'http://202.155.157.237/api/complaint'
+const BASE_URL = 'https://103bec10-ae2f-4484-bfc7-16921f4b1b5e.mock.pstmn.io/api/complaint'
 
 export const ApiComplaint = {
     // list
@@ -12,11 +12,11 @@ export const ApiComplaint = {
 
         return read.map((item: any) => {
             const payload = {
-                id: item.assignmentNo,
-                nokomplain: item.complaintNo,
-                namacustomer: item.customer.name,
-                tipe: item.type,
-                namapic: item.pic,
+                id: item.complaintNo,
+                mpNo: item.mpNo,
+                description: item.description,
+                customer: item.customer,
+                sales: item.sales,
                 status: item.status,
             }
             return schemacomplaint.parse(payload)
@@ -30,12 +30,13 @@ export const ApiComplaint = {
         const readbyid = result.data
 
         const payload = {
-            id: readbyid.assignmentNo,
-            nokomplain: readbyid.complaintNo,
-            namacustomer: readbyid.customer.name,
-            tipe: readbyid.type,
-            namapic: readbyid.pic,
-            status: readbyid.status
+
+            id: readbyid.complaintNo,
+            mpNo: readbyid.mpNo,
+            description: readbyid.description,
+            customer: readbyid.customer,
+            sales: readbyid.sales,
+            status: readbyid.status,
         };
         return schemacomplaint.parse(payload);
     },
@@ -43,14 +44,12 @@ export const ApiComplaint = {
     // create
     create: async (data: Complaint): Promise<Complaint> => {
         const payload = {
-            assignmentNo: data.id,
-            complaintNo: data.nokomplain,
-            customer: {
-                name: data.namacustomer
-            },
-            type: data.tipe,
-            pic: data.namapic,
-            status: data.status
+            complaintNo: data.id,
+            mpNo: data.mpNo,
+            description: data.description,
+            customer: data.customer,
+            sales: data.sales,
+            status: data.status,
         };
 
         const response = await fetch(BASE_URL, {
@@ -64,11 +63,11 @@ export const ApiComplaint = {
         const item = result.data
 
         const map = {
-            id: item.assignmentNo,
-            nokomplain: item.complaintNo,
-            namacustomer: item.customer.name,
-            tipe: item.type,
-            namapic: item.pic,
+            id: item.complaintNo,
+            mpNo: item.mpNo,
+            description: item.description,
+            customer: item.customer,
+            sales: item.sales,
             status: item.status,
         }
         return schemacomplaint.parse(map)

@@ -5,7 +5,7 @@ export const schemastockprinter = z.object({
     name: z.coerce.string(),
     serialno: z.coerce.string(),
     feature: z.coerce.string(),
-    buydate: z.coerce.string(),
+    buydate: z.coerce.date(),
     location: z.coerce.string(),
     branch: z.coerce.string(),
     status: z.coerce.string(),

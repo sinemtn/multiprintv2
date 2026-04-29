@@ -31,8 +31,7 @@ import { TableColumns as columns } from "./table-column";
 
 
 // PROGRAM
-// const route = getRouteApi('/stock/printer/')
-const route = getRouteApi('/_authenticated/stock/printer/')
+const route = getRouteApi('/_authenticated/komplain/')
 type DataTableProps = {
     data: Complaint[]
 }
@@ -76,12 +75,12 @@ export function TasksTable({ data }: DataTableProps) {
         onColumnVisibilityChange: setColumnVisibility,
         globalFilterFn: (row, _columnId, filterValue) => {
             const id = String(row.getValue('id')).toLowerCase()
-            const name = String(row.getValue('name')).toLowerCase()
-            const serialno = String(row.getValue('serialno')).toLowerCase()
-            const location = String(row.getValue('location')).toLowerCase()
-            const status = String(row.getValue('status')).toLowerCase()
+            const mpNo = String(row.getValue('mpNo')).toLowerCase()
+            const description = String(row.getValue('description')).toLowerCase()
+            const customer = String(row.getValue('customer')).toLowerCase()
+            const sales = String(row.getValue('sales')).toLowerCase()
             const searchValue = String(filterValue).toLowerCase()
-            return id.includes(searchValue) || name.includes(searchValue) || serialno.includes(searchValue) || location.includes(searchValue) || status.includes(searchValue)
+            return id.includes(searchValue) || mpNo.includes(searchValue) || description.includes(searchValue) || sales.includes(searchValue) || customer.includes(searchValue)
         },
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),

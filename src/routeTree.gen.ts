@@ -26,12 +26,9 @@ import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_aut
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
-import { Route as AuthenticatedTonersIndexRouteImport } from './routes/_authenticated/toners/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSuratTugasIndexRouteImport } from './routes/_authenticated/surat-tugas/index'
-import { Route as AuthenticatedSparepartsIndexRouteImport } from './routes/_authenticated/spareparts/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
-import { Route as AuthenticatedPrinterIndexRouteImport } from './routes/_authenticated/printer/index'
 import { Route as AuthenticatedKomplainIndexRouteImport } from './routes/_authenticated/komplain/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedAppsIndexRouteImport } from './routes/_authenticated/apps/index'
@@ -43,11 +40,18 @@ import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_auth
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
-import { Route as AuthenticatedSuratTugasActionsRouteRouteImport } from './routes/_authenticated/surat-tugas/actions/route'
+import { Route as AuthenticatedSuratTugasAddRouteRouteImport } from './routes/_authenticated/surat-tugas/add/route'
+import { Route as AuthenticatedKomplainAddRouteRouteImport } from './routes/_authenticated/komplain/add/route'
+import { Route as AuthenticatedSuratTugasAddIndexRouteImport } from './routes/_authenticated/surat-tugas/add/index'
+import { Route as AuthenticatedStockTonerIndexRouteImport } from './routes/_authenticated/stock/toner/index'
 import { Route as AuthenticatedStockPrinterIndexRouteImport } from './routes/_authenticated/stock/printer/index'
-import { Route as AuthenticatedSuratTugasActionsItemsRouteImport } from './routes/_authenticated/surat-tugas/actions/items'
-import { Route as AuthenticatedPrinterActionsIndexIdRouteImport } from './routes/_authenticated/printer/actions/index.$id'
-import { Route as AuthenticatedSuratTugasActionsGeneralIdRouteImport } from './routes/_authenticated/surat-tugas/actions/general.$id'
+import { Route as AuthenticatedMasterUserIndexRouteImport } from './routes/_authenticated/master/user/index'
+import { Route as AuthenticatedMasterTonerIndexRouteImport } from './routes/_authenticated/master/toner/index'
+import { Route as AuthenticatedMasterSparepartIndexRouteImport } from './routes/_authenticated/master/sparepart/index'
+import { Route as AuthenticatedMasterPrinterIndexRouteImport } from './routes/_authenticated/master/printer/index'
+import { Route as AuthenticatedKomplainAddIndexRouteImport } from './routes/_authenticated/komplain/add/index'
+import { Route as AuthenticatedSuratTugasAddItemsRouteImport } from './routes/_authenticated/surat-tugas/add/items'
+import { Route as AuthenticatedKomplainAddSuratTugasRouteImport } from './routes/_authenticated/komplain/add/surat-tugas'
 
 const ClerkRouteRoute = ClerkRouteRouteImport.update({
   id: '/clerk',
@@ -132,12 +136,6 @@ const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedTonersIndexRoute =
-  AuthenticatedTonersIndexRouteImport.update({
-    id: '/toners/',
-    path: '/toners/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
   id: '/tasks/',
   path: '/tasks/',
@@ -149,23 +147,11 @@ const AuthenticatedSuratTugasIndexRoute =
     path: '/surat-tugas/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSparepartsIndexRoute =
-  AuthenticatedSparepartsIndexRouteImport.update({
-    id: '/spareparts/',
-    path: '/spareparts/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-const AuthenticatedPrinterIndexRoute =
-  AuthenticatedPrinterIndexRouteImport.update({
-    id: '/printer/',
-    path: '/printer/',
-    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedKomplainIndexRoute =
   AuthenticatedKomplainIndexRouteImport.update({
@@ -229,10 +215,28 @@ const AuthenticatedErrorsErrorRoute =
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSuratTugasActionsRouteRoute =
-  AuthenticatedSuratTugasActionsRouteRouteImport.update({
-    id: '/surat-tugas/actions',
-    path: '/surat-tugas/actions',
+const AuthenticatedSuratTugasAddRouteRoute =
+  AuthenticatedSuratTugasAddRouteRouteImport.update({
+    id: '/surat-tugas/add',
+    path: '/surat-tugas/add',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedKomplainAddRouteRoute =
+  AuthenticatedKomplainAddRouteRouteImport.update({
+    id: '/komplain/add',
+    path: '/komplain/add',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSuratTugasAddIndexRoute =
+  AuthenticatedSuratTugasAddIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSuratTugasAddRouteRoute,
+  } as any)
+const AuthenticatedStockTonerIndexRoute =
+  AuthenticatedStockTonerIndexRouteImport.update({
+    id: '/stock/toner/',
+    path: '/stock/toner/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedStockPrinterIndexRoute =
@@ -241,23 +245,47 @@ const AuthenticatedStockPrinterIndexRoute =
     path: '/stock/printer/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSuratTugasActionsItemsRoute =
-  AuthenticatedSuratTugasActionsItemsRouteImport.update({
-    id: '/items',
-    path: '/items',
-    getParentRoute: () => AuthenticatedSuratTugasActionsRouteRoute,
-  } as any)
-const AuthenticatedPrinterActionsIndexIdRoute =
-  AuthenticatedPrinterActionsIndexIdRouteImport.update({
-    id: '/printer/actions/index/$id',
-    path: '/printer/actions/index/$id',
+const AuthenticatedMasterUserIndexRoute =
+  AuthenticatedMasterUserIndexRouteImport.update({
+    id: '/master/user/',
+    path: '/master/user/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedSuratTugasActionsGeneralIdRoute =
-  AuthenticatedSuratTugasActionsGeneralIdRouteImport.update({
-    id: '/general/$id',
-    path: '/general/$id',
-    getParentRoute: () => AuthenticatedSuratTugasActionsRouteRoute,
+const AuthenticatedMasterTonerIndexRoute =
+  AuthenticatedMasterTonerIndexRouteImport.update({
+    id: '/master/toner/',
+    path: '/master/toner/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMasterSparepartIndexRoute =
+  AuthenticatedMasterSparepartIndexRouteImport.update({
+    id: '/master/sparepart/',
+    path: '/master/sparepart/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMasterPrinterIndexRoute =
+  AuthenticatedMasterPrinterIndexRouteImport.update({
+    id: '/master/printer/',
+    path: '/master/printer/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedKomplainAddIndexRoute =
+  AuthenticatedKomplainAddIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedKomplainAddRouteRoute,
+  } as any)
+const AuthenticatedSuratTugasAddItemsRoute =
+  AuthenticatedSuratTugasAddItemsRouteImport.update({
+    id: '/items',
+    path: '/items',
+    getParentRoute: () => AuthenticatedSuratTugasAddRouteRoute,
+  } as any)
+const AuthenticatedKomplainAddSuratTugasRoute =
+  AuthenticatedKomplainAddSuratTugasRouteImport.update({
+    id: '/surat-tugas',
+    path: '/surat-tugas',
+    getParentRoute: () => AuthenticatedKomplainAddRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -274,7 +302,8 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/surat-tugas/actions': typeof AuthenticatedSuratTugasActionsRouteRouteWithChildren
+  '/komplain/add': typeof AuthenticatedKomplainAddRouteRouteWithChildren
+  '/surat-tugas/add': typeof AuthenticatedSuratTugasAddRouteRouteWithChildren
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -286,17 +315,20 @@ export interface FileRoutesByFullPath {
   '/apps/': typeof AuthenticatedAppsIndexRoute
   '/chats/': typeof AuthenticatedChatsIndexRoute
   '/komplain/': typeof AuthenticatedKomplainIndexRoute
-  '/printer/': typeof AuthenticatedPrinterIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/spareparts/': typeof AuthenticatedSparepartsIndexRoute
   '/surat-tugas/': typeof AuthenticatedSuratTugasIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
-  '/toners/': typeof AuthenticatedTonersIndexRoute
   '/users/': typeof AuthenticatedUsersIndexRoute
-  '/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
+  '/komplain/add/surat-tugas': typeof AuthenticatedKomplainAddSuratTugasRoute
+  '/surat-tugas/add/items': typeof AuthenticatedSuratTugasAddItemsRoute
+  '/komplain/add/': typeof AuthenticatedKomplainAddIndexRoute
+  '/master/printer/': typeof AuthenticatedMasterPrinterIndexRoute
+  '/master/sparepart/': typeof AuthenticatedMasterSparepartIndexRoute
+  '/master/toner/': typeof AuthenticatedMasterTonerIndexRoute
+  '/master/user/': typeof AuthenticatedMasterUserIndexRoute
   '/stock/printer/': typeof AuthenticatedStockPrinterIndexRoute
-  '/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
-  '/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
+  '/stock/toner/': typeof AuthenticatedStockTonerIndexRoute
+  '/surat-tugas/add/': typeof AuthenticatedSuratTugasAddIndexRoute
 }
 export interface FileRoutesByTo {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
@@ -311,7 +343,6 @@ export interface FileRoutesByTo {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
-  '/surat-tugas/actions': typeof AuthenticatedSuratTugasActionsRouteRouteWithChildren
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -323,17 +354,20 @@ export interface FileRoutesByTo {
   '/apps': typeof AuthenticatedAppsIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/komplain': typeof AuthenticatedKomplainIndexRoute
-  '/printer': typeof AuthenticatedPrinterIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
-  '/spareparts': typeof AuthenticatedSparepartsIndexRoute
   '/surat-tugas': typeof AuthenticatedSuratTugasIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
-  '/toners': typeof AuthenticatedTonersIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
-  '/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
+  '/komplain/add/surat-tugas': typeof AuthenticatedKomplainAddSuratTugasRoute
+  '/surat-tugas/add/items': typeof AuthenticatedSuratTugasAddItemsRoute
+  '/komplain/add': typeof AuthenticatedKomplainAddIndexRoute
+  '/master/printer': typeof AuthenticatedMasterPrinterIndexRoute
+  '/master/sparepart': typeof AuthenticatedMasterSparepartIndexRoute
+  '/master/toner': typeof AuthenticatedMasterTonerIndexRoute
+  '/master/user': typeof AuthenticatedMasterUserIndexRoute
   '/stock/printer': typeof AuthenticatedStockPrinterIndexRoute
-  '/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
-  '/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
+  '/stock/toner': typeof AuthenticatedStockTonerIndexRoute
+  '/surat-tugas/add': typeof AuthenticatedSuratTugasAddIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -353,7 +387,8 @@ export interface FileRoutesById {
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
   '/_authenticated/': typeof AuthenticatedIndexRoute
-  '/_authenticated/surat-tugas/actions': typeof AuthenticatedSuratTugasActionsRouteRouteWithChildren
+  '/_authenticated/komplain/add': typeof AuthenticatedKomplainAddRouteRouteWithChildren
+  '/_authenticated/surat-tugas/add': typeof AuthenticatedSuratTugasAddRouteRouteWithChildren
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -365,17 +400,20 @@ export interface FileRoutesById {
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/komplain/': typeof AuthenticatedKomplainIndexRoute
-  '/_authenticated/printer/': typeof AuthenticatedPrinterIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/_authenticated/spareparts/': typeof AuthenticatedSparepartsIndexRoute
   '/_authenticated/surat-tugas/': typeof AuthenticatedSuratTugasIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
-  '/_authenticated/toners/': typeof AuthenticatedTonersIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
-  '/_authenticated/surat-tugas/actions/items': typeof AuthenticatedSuratTugasActionsItemsRoute
+  '/_authenticated/komplain/add/surat-tugas': typeof AuthenticatedKomplainAddSuratTugasRoute
+  '/_authenticated/surat-tugas/add/items': typeof AuthenticatedSuratTugasAddItemsRoute
+  '/_authenticated/komplain/add/': typeof AuthenticatedKomplainAddIndexRoute
+  '/_authenticated/master/printer/': typeof AuthenticatedMasterPrinterIndexRoute
+  '/_authenticated/master/sparepart/': typeof AuthenticatedMasterSparepartIndexRoute
+  '/_authenticated/master/toner/': typeof AuthenticatedMasterTonerIndexRoute
+  '/_authenticated/master/user/': typeof AuthenticatedMasterUserIndexRoute
   '/_authenticated/stock/printer/': typeof AuthenticatedStockPrinterIndexRoute
-  '/_authenticated/surat-tugas/actions/general/$id': typeof AuthenticatedSuratTugasActionsGeneralIdRoute
-  '/_authenticated/printer/actions/index/$id': typeof AuthenticatedPrinterActionsIndexIdRoute
+  '/_authenticated/stock/toner/': typeof AuthenticatedStockTonerIndexRoute
+  '/_authenticated/surat-tugas/add/': typeof AuthenticatedSuratTugasAddIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -393,7 +431,8 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
-    | '/surat-tugas/actions'
+    | '/komplain/add'
+    | '/surat-tugas/add'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -405,17 +444,20 @@ export interface FileRouteTypes {
     | '/apps/'
     | '/chats/'
     | '/komplain/'
-    | '/printer/'
     | '/settings/'
-    | '/spareparts/'
     | '/surat-tugas/'
     | '/tasks/'
-    | '/toners/'
     | '/users/'
-    | '/surat-tugas/actions/items'
+    | '/komplain/add/surat-tugas'
+    | '/surat-tugas/add/items'
+    | '/komplain/add/'
+    | '/master/printer/'
+    | '/master/sparepart/'
+    | '/master/toner/'
+    | '/master/user/'
     | '/stock/printer/'
-    | '/surat-tugas/actions/general/$id'
-    | '/printer/actions/index/$id'
+    | '/stock/toner/'
+    | '/surat-tugas/add/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/clerk'
@@ -430,7 +472,6 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
-    | '/surat-tugas/actions'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -442,17 +483,20 @@ export interface FileRouteTypes {
     | '/apps'
     | '/chats'
     | '/komplain'
-    | '/printer'
     | '/settings'
-    | '/spareparts'
     | '/surat-tugas'
     | '/tasks'
-    | '/toners'
     | '/users'
-    | '/surat-tugas/actions/items'
+    | '/komplain/add/surat-tugas'
+    | '/surat-tugas/add/items'
+    | '/komplain/add'
+    | '/master/printer'
+    | '/master/sparepart'
+    | '/master/toner'
+    | '/master/user'
     | '/stock/printer'
-    | '/surat-tugas/actions/general/$id'
-    | '/printer/actions/index/$id'
+    | '/stock/toner'
+    | '/surat-tugas/add'
   id:
     | '__root__'
     | '/_authenticated'
@@ -471,7 +515,8 @@ export interface FileRouteTypes {
     | '/(errors)/500'
     | '/(errors)/503'
     | '/_authenticated/'
-    | '/_authenticated/surat-tugas/actions'
+    | '/_authenticated/komplain/add'
+    | '/_authenticated/surat-tugas/add'
     | '/_authenticated/errors/$error'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
@@ -483,17 +528,20 @@ export interface FileRouteTypes {
     | '/_authenticated/apps/'
     | '/_authenticated/chats/'
     | '/_authenticated/komplain/'
-    | '/_authenticated/printer/'
     | '/_authenticated/settings/'
-    | '/_authenticated/spareparts/'
     | '/_authenticated/surat-tugas/'
     | '/_authenticated/tasks/'
-    | '/_authenticated/toners/'
     | '/_authenticated/users/'
-    | '/_authenticated/surat-tugas/actions/items'
+    | '/_authenticated/komplain/add/surat-tugas'
+    | '/_authenticated/surat-tugas/add/items'
+    | '/_authenticated/komplain/add/'
+    | '/_authenticated/master/printer/'
+    | '/_authenticated/master/sparepart/'
+    | '/_authenticated/master/toner/'
+    | '/_authenticated/master/user/'
     | '/_authenticated/stock/printer/'
-    | '/_authenticated/surat-tugas/actions/general/$id'
-    | '/_authenticated/printer/actions/index/$id'
+    | '/_authenticated/stock/toner/'
+    | '/_authenticated/surat-tugas/add/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -632,13 +680,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/toners/': {
-      id: '/_authenticated/toners/'
-      path: '/toners'
-      fullPath: '/toners/'
-      preLoaderRoute: typeof AuthenticatedTonersIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/tasks/': {
       id: '/_authenticated/tasks/'
       path: '/tasks'
@@ -653,26 +694,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSuratTugasIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/spareparts/': {
-      id: '/_authenticated/spareparts/'
-      path: '/spareparts'
-      fullPath: '/spareparts/'
-      preLoaderRoute: typeof AuthenticatedSparepartsIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/settings/': {
       id: '/_authenticated/settings/'
       path: '/'
       fullPath: '/settings/'
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
-    }
-    '/_authenticated/printer/': {
-      id: '/_authenticated/printer/'
-      path: '/printer'
-      fullPath: '/printer/'
-      preLoaderRoute: typeof AuthenticatedPrinterIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/komplain/': {
       id: '/_authenticated/komplain/'
@@ -751,11 +778,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/surat-tugas/actions': {
-      id: '/_authenticated/surat-tugas/actions'
-      path: '/surat-tugas/actions'
-      fullPath: '/surat-tugas/actions'
-      preLoaderRoute: typeof AuthenticatedSuratTugasActionsRouteRouteImport
+    '/_authenticated/surat-tugas/add': {
+      id: '/_authenticated/surat-tugas/add'
+      path: '/surat-tugas/add'
+      fullPath: '/surat-tugas/add'
+      preLoaderRoute: typeof AuthenticatedSuratTugasAddRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/komplain/add': {
+      id: '/_authenticated/komplain/add'
+      path: '/komplain/add'
+      fullPath: '/komplain/add'
+      preLoaderRoute: typeof AuthenticatedKomplainAddRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/surat-tugas/add/': {
+      id: '/_authenticated/surat-tugas/add/'
+      path: '/'
+      fullPath: '/surat-tugas/add/'
+      preLoaderRoute: typeof AuthenticatedSuratTugasAddIndexRouteImport
+      parentRoute: typeof AuthenticatedSuratTugasAddRouteRoute
+    }
+    '/_authenticated/stock/toner/': {
+      id: '/_authenticated/stock/toner/'
+      path: '/stock/toner'
+      fullPath: '/stock/toner/'
+      preLoaderRoute: typeof AuthenticatedStockTonerIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/stock/printer/': {
@@ -765,26 +813,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedStockPrinterIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/surat-tugas/actions/items': {
-      id: '/_authenticated/surat-tugas/actions/items'
-      path: '/items'
-      fullPath: '/surat-tugas/actions/items'
-      preLoaderRoute: typeof AuthenticatedSuratTugasActionsItemsRouteImport
-      parentRoute: typeof AuthenticatedSuratTugasActionsRouteRoute
-    }
-    '/_authenticated/printer/actions/index/$id': {
-      id: '/_authenticated/printer/actions/index/$id'
-      path: '/printer/actions/index/$id'
-      fullPath: '/printer/actions/index/$id'
-      preLoaderRoute: typeof AuthenticatedPrinterActionsIndexIdRouteImport
+    '/_authenticated/master/user/': {
+      id: '/_authenticated/master/user/'
+      path: '/master/user'
+      fullPath: '/master/user/'
+      preLoaderRoute: typeof AuthenticatedMasterUserIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/surat-tugas/actions/general/$id': {
-      id: '/_authenticated/surat-tugas/actions/general/$id'
-      path: '/general/$id'
-      fullPath: '/surat-tugas/actions/general/$id'
-      preLoaderRoute: typeof AuthenticatedSuratTugasActionsGeneralIdRouteImport
-      parentRoute: typeof AuthenticatedSuratTugasActionsRouteRoute
+    '/_authenticated/master/toner/': {
+      id: '/_authenticated/master/toner/'
+      path: '/master/toner'
+      fullPath: '/master/toner/'
+      preLoaderRoute: typeof AuthenticatedMasterTonerIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/master/sparepart/': {
+      id: '/_authenticated/master/sparepart/'
+      path: '/master/sparepart'
+      fullPath: '/master/sparepart/'
+      preLoaderRoute: typeof AuthenticatedMasterSparepartIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/master/printer/': {
+      id: '/_authenticated/master/printer/'
+      path: '/master/printer'
+      fullPath: '/master/printer/'
+      preLoaderRoute: typeof AuthenticatedMasterPrinterIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/komplain/add/': {
+      id: '/_authenticated/komplain/add/'
+      path: '/'
+      fullPath: '/komplain/add/'
+      preLoaderRoute: typeof AuthenticatedKomplainAddIndexRouteImport
+      parentRoute: typeof AuthenticatedKomplainAddRouteRoute
+    }
+    '/_authenticated/surat-tugas/add/items': {
+      id: '/_authenticated/surat-tugas/add/items'
+      path: '/items'
+      fullPath: '/surat-tugas/add/items'
+      preLoaderRoute: typeof AuthenticatedSuratTugasAddItemsRouteImport
+      parentRoute: typeof AuthenticatedSuratTugasAddRouteRoute
+    }
+    '/_authenticated/komplain/add/surat-tugas': {
+      id: '/_authenticated/komplain/add/surat-tugas'
+      path: '/surat-tugas'
+      fullPath: '/komplain/add/surat-tugas'
+      preLoaderRoute: typeof AuthenticatedKomplainAddSuratTugasRouteImport
+      parentRoute: typeof AuthenticatedKomplainAddRouteRoute
     }
   }
 }
@@ -812,60 +888,80 @@ const AuthenticatedSettingsRouteRouteWithChildren =
     AuthenticatedSettingsRouteRouteChildren,
   )
 
-interface AuthenticatedSuratTugasActionsRouteRouteChildren {
-  AuthenticatedSuratTugasActionsItemsRoute: typeof AuthenticatedSuratTugasActionsItemsRoute
-  AuthenticatedSuratTugasActionsGeneralIdRoute: typeof AuthenticatedSuratTugasActionsGeneralIdRoute
+interface AuthenticatedKomplainAddRouteRouteChildren {
+  AuthenticatedKomplainAddSuratTugasRoute: typeof AuthenticatedKomplainAddSuratTugasRoute
+  AuthenticatedKomplainAddIndexRoute: typeof AuthenticatedKomplainAddIndexRoute
 }
 
-const AuthenticatedSuratTugasActionsRouteRouteChildren: AuthenticatedSuratTugasActionsRouteRouteChildren =
+const AuthenticatedKomplainAddRouteRouteChildren: AuthenticatedKomplainAddRouteRouteChildren =
   {
-    AuthenticatedSuratTugasActionsItemsRoute:
-      AuthenticatedSuratTugasActionsItemsRoute,
-    AuthenticatedSuratTugasActionsGeneralIdRoute:
-      AuthenticatedSuratTugasActionsGeneralIdRoute,
+    AuthenticatedKomplainAddSuratTugasRoute:
+      AuthenticatedKomplainAddSuratTugasRoute,
+    AuthenticatedKomplainAddIndexRoute: AuthenticatedKomplainAddIndexRoute,
   }
 
-const AuthenticatedSuratTugasActionsRouteRouteWithChildren =
-  AuthenticatedSuratTugasActionsRouteRoute._addFileChildren(
-    AuthenticatedSuratTugasActionsRouteRouteChildren,
+const AuthenticatedKomplainAddRouteRouteWithChildren =
+  AuthenticatedKomplainAddRouteRoute._addFileChildren(
+    AuthenticatedKomplainAddRouteRouteChildren,
+  )
+
+interface AuthenticatedSuratTugasAddRouteRouteChildren {
+  AuthenticatedSuratTugasAddItemsRoute: typeof AuthenticatedSuratTugasAddItemsRoute
+  AuthenticatedSuratTugasAddIndexRoute: typeof AuthenticatedSuratTugasAddIndexRoute
+}
+
+const AuthenticatedSuratTugasAddRouteRouteChildren: AuthenticatedSuratTugasAddRouteRouteChildren =
+  {
+    AuthenticatedSuratTugasAddItemsRoute: AuthenticatedSuratTugasAddItemsRoute,
+    AuthenticatedSuratTugasAddIndexRoute: AuthenticatedSuratTugasAddIndexRoute,
+  }
+
+const AuthenticatedSuratTugasAddRouteRouteWithChildren =
+  AuthenticatedSuratTugasAddRouteRoute._addFileChildren(
+    AuthenticatedSuratTugasAddRouteRouteChildren,
   )
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
-  AuthenticatedSuratTugasActionsRouteRoute: typeof AuthenticatedSuratTugasActionsRouteRouteWithChildren
+  AuthenticatedKomplainAddRouteRoute: typeof AuthenticatedKomplainAddRouteRouteWithChildren
+  AuthenticatedSuratTugasAddRouteRoute: typeof AuthenticatedSuratTugasAddRouteRouteWithChildren
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedKomplainIndexRoute: typeof AuthenticatedKomplainIndexRoute
-  AuthenticatedPrinterIndexRoute: typeof AuthenticatedPrinterIndexRoute
-  AuthenticatedSparepartsIndexRoute: typeof AuthenticatedSparepartsIndexRoute
   AuthenticatedSuratTugasIndexRoute: typeof AuthenticatedSuratTugasIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
-  AuthenticatedTonersIndexRoute: typeof AuthenticatedTonersIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
+  AuthenticatedMasterPrinterIndexRoute: typeof AuthenticatedMasterPrinterIndexRoute
+  AuthenticatedMasterSparepartIndexRoute: typeof AuthenticatedMasterSparepartIndexRoute
+  AuthenticatedMasterTonerIndexRoute: typeof AuthenticatedMasterTonerIndexRoute
+  AuthenticatedMasterUserIndexRoute: typeof AuthenticatedMasterUserIndexRoute
   AuthenticatedStockPrinterIndexRoute: typeof AuthenticatedStockPrinterIndexRoute
-  AuthenticatedPrinterActionsIndexIdRoute: typeof AuthenticatedPrinterActionsIndexIdRoute
+  AuthenticatedStockTonerIndexRoute: typeof AuthenticatedStockTonerIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
-  AuthenticatedSuratTugasActionsRouteRoute:
-    AuthenticatedSuratTugasActionsRouteRouteWithChildren,
+  AuthenticatedKomplainAddRouteRoute:
+    AuthenticatedKomplainAddRouteRouteWithChildren,
+  AuthenticatedSuratTugasAddRouteRoute:
+    AuthenticatedSuratTugasAddRouteRouteWithChildren,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedKomplainIndexRoute: AuthenticatedKomplainIndexRoute,
-  AuthenticatedPrinterIndexRoute: AuthenticatedPrinterIndexRoute,
-  AuthenticatedSparepartsIndexRoute: AuthenticatedSparepartsIndexRoute,
   AuthenticatedSuratTugasIndexRoute: AuthenticatedSuratTugasIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
-  AuthenticatedTonersIndexRoute: AuthenticatedTonersIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
+  AuthenticatedMasterPrinterIndexRoute: AuthenticatedMasterPrinterIndexRoute,
+  AuthenticatedMasterSparepartIndexRoute:
+    AuthenticatedMasterSparepartIndexRoute,
+  AuthenticatedMasterTonerIndexRoute: AuthenticatedMasterTonerIndexRoute,
+  AuthenticatedMasterUserIndexRoute: AuthenticatedMasterUserIndexRoute,
   AuthenticatedStockPrinterIndexRoute: AuthenticatedStockPrinterIndexRoute,
-  AuthenticatedPrinterActionsIndexIdRoute:
-    AuthenticatedPrinterActionsIndexIdRoute,
+  AuthenticatedStockTonerIndexRoute: AuthenticatedStockTonerIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

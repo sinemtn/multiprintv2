@@ -1,13 +1,13 @@
 import { z } from 'zod'
 
-export const printerSchema = z.object({
+export const schemamasterprinter = z.object({
     id: z.coerce.string(),
-    nama: z.coerce.string(),
-    manufaktur: z.coerce.string(),
-    kategori: z.coerce.string(),
+    name: z.coerce.string(),
+    manufacture: z.coerce.string(),
+    category: z.coerce.string(),
     toner: z.coerce.string(),
     supplier: z.coerce.string(),
-    aktif: z.coerce.string(),
+    active: z.coerce.string(),
 })
 
-export type Printer = z.infer<typeof printerSchema>
+export type MasterPrinter = z.infer<typeof schemamasterprinter>

@@ -15,7 +15,7 @@ import { TasksTable } from './components/table-filter'
 import { TasksProvider } from './components/main-page'
 import { PrinterDialogs } from './components/dialog'
 
-export function IndexStockPrinter() {
+export function IndexComplaint() {
     const [Complaints, setComplaints] = useState<Complaint[]>([])
     const [loading, setLoading] = useState(true)
 
@@ -35,30 +35,10 @@ export function IndexStockPrinter() {
     }, [])
 
     if (loading) {
-        return <div className='p-8 text-center'>Loading Data Stock Printer...</div>
+        return <div className='p-8 text-center'>Loading Data Komplain...</div>
     }
 
     return (
-        // <TasksProvider>
-        //     <Header fixed>
-        //         <div className='ms-auto flex items-center space-x-4'>
-        //             <ThemeSwitch />
-        //             <ProfileDropdown />
-        //         </div>
-        //     </Header>
-        //     <Main>
-        //         <div className='flex flex-wrap items-end justify-between gap-2'>
-        //             <div>
-        //                 <h2 className='text-2xl font-bold tracking-tight'>Stock Printer</h2>
-        //                 <p className='text-muted-foreground'>
-        //                     Daftar list stock printer.
-        //                 </p>
-        //             </div>
-        //             <MainHeaderButton />
-        //         </div>
-        //         <TasksTable data={StockPrinters} />
-        //     </Main>
-        // </TasksProvider>
         <TasksProvider>
             <Header fixed>
                 <div className='ms-auto flex items-center space-x-4'>

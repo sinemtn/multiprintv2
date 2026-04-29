@@ -36,6 +36,7 @@ export const usersColumns: ColumnDef<User>[] = [
     enableSorting: false,
     enableHiding: false,
   },
+  
   {
     accessorKey: 'username',
     header: ({ column }) => (

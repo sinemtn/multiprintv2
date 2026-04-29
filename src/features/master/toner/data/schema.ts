@@ -1,10 +1,9 @@
 import { z } from 'zod'
 
-export const tonerSchema = z.object({
+export const schemamastertoner = z.object({
     id: z.coerce.string(),
-    nama: z.coerce.string(),
-    kategori: z.coerce.string(),
-    status: z.coerce.string(),
+    name: z.coerce.string(),
+    category: z.coerce.string(),
+    active: z.coerce.string(),
 })
-
-export type Toner = z.infer<typeof tonerSchema>
+export type MasterToner = z.infer<typeof schemamastertoner>
