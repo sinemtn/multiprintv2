@@ -1,14 +1,11 @@
 import { z } from 'zod'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link } from '@tanstack/react-router'
 import { showSubmittedData } from '@/lib/show-submitted-data'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,38 +19,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
-
 const profileFormSchema = z.object({
   username: z
     .string('Please enter your username.')
     .min(2, 'Username must be at least 2 characters.')
     .max(30, 'Username must not be longer than 30 characters.'),
+
+    password: z
+    .string('Please enter your password.')
+    .min(2, 'Password must be at least 2 characters.')
+    .max(30, 'Password must not be longer than 30 characters.'),
   email: z.email({
     error: (iss) =>
       iss.input === undefined
         ? 'Please select an email to display.'
         : undefined,
   }),
-  bio: z.string().max(160).min(4),
-  urls: z
-    .array(
-      z.object({
-        value: z.url('Please enter a valid URL.'),
-      })
-    )
-    .optional(),
+
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 // This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
-  bio: 'I own a computer.',
-  urls: [
-    { value: 'https://shadcn.com' },
-    { value: 'http://twitter.com/shadcn' },
-  ],
+
 }
 
 export function ProfileForm() {
@@ -63,10 +52,7 @@ export function ProfileForm() {
     mode: 'onChange',
   })
 
-  const { fields, append } = useFieldArray({
-    name: 'urls',
-    control: form.control,
-  })
+
 
   return (
     <Form {...form}>
@@ -81,12 +67,8 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='shadcn' {...field} />
+                <Input placeholder='mortekianond' {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -96,28 +78,41 @@ export function ProfileForm() {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Role</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder='Select a verified email to display' />
+                    <SelectValue placeholder='Select Role' />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value='m@example.com'>m@example.com</SelectItem>
-                  <SelectItem value='m@google.com'>m@google.com</SelectItem>
-                  <SelectItem value='m@support.com'>m@support.com</SelectItem>
+                  <SelectItem value='m@example.com'>superadmin</SelectItem>
+                  <SelectItem value='m@google.com'>admin</SelectItem>
+                  <SelectItem value='m@support.com'>user</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                You can manage verified email addresses in your{' '}
-                <Link to='/'>email settings</Link>.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
+
+
+          <FormField
+          control={form.control}
+          name='password'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input placeholder='*********' {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        {/* <FormField
           control={form.control}
           name='bio'
           render={({ field }) => (
@@ -137,8 +132,8 @@ export function ProfileForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <div>
+        /> */}
+        {/* <div>
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -169,7 +164,7 @@ export function ProfileForm() {
           >
             Add URL
           </Button>
-        </div>
+        </div> */}
         <Button type='submit'>Update profile</Button>
       </form>
     </Form>

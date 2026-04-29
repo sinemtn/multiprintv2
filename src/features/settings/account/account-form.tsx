@@ -1,46 +1,23 @@
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { showSubmittedData } from '@/lib/show-submitted-data'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command'
-import {
   Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-import { DatePicker } from '@/components/date-picker'
 
-const languages = [
-  { label: 'English', value: 'en' },
-  { label: 'French', value: 'fr' },
-  { label: 'German', value: 'de' },
-  { label: 'Spanish', value: 'es' },
-  { label: 'Portuguese', value: 'pt' },
-  { label: 'Russian', value: 'ru' },
-  { label: 'Japanese', value: 'ja' },
-  { label: 'Korean', value: 'ko' },
-  { label: 'Chinese', value: 'zh' },
-] as const
+// const languages = [
+//   { label: 'English', value: 'en' },
+//   { label: 'French', value: 'fr' },
+//   { label: 'German', value: 'de' },
+//   { label: 'Spanish', value: 'es' },
+//   { label: 'Portuguese', value: 'pt' },
+//   { label: 'Russian', value: 'ru' },
+//   { label: 'Japanese', value: 'ja' },
+//   { label: 'Korean', value: 'ko' },
+//   { label: 'Chinese', value: 'zh' },
+// ] as const
 
 const accountFormSchema = z.object({
   name: z
@@ -72,7 +49,7 @@ export function AccountForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-        <FormField
+        {/* <FormField
           control={form.control}
           name='name'
           render={({ field }) => (
@@ -165,7 +142,7 @@ export function AccountForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <Button type='submit'>Update account</Button>
       </form>
     </Form>
